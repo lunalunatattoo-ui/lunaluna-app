@@ -895,7 +895,8 @@ function arrancarApp(){
 async function init(){
   if(TOKEN){
     try{
-      const res = await fetch(SCRIPT_URL, {method:'POST', body:JSON.stringify({action:'getUserByToken', token:TOKEN})});
+      const PROXY = 'https://corsproxy.io/?';
+      const res = await fetch(PROXY + encodeURIComponent(SCRIPT_URL), {method:'POST', body:JSON.stringify({action:'getUserByToken', token})});
       const data = await res.json();
       if(data.ok && data.datos){
         USUARIO = data.datos;
