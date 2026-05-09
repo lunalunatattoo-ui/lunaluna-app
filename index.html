@@ -850,7 +850,8 @@ document.getElementById('login-btn').addEventListener('click', async()=>{
   document.getElementById('login-btn').disabled=true;
   document.getElementById('login-btn').textContent='Verificando...';
   try{
-    const PROXY = 'https://api.allorigins.win/raw?url=';
+    const url = SCRIPT_URL + '?action=getUserByToken&data=' + encodeURIComponent(JSON.stringify({token}));
+    const res = await fetch(url);
     const res = await fetch(PROXY + encodeURIComponent(SCRIPT_URL), {method:'POST', body:JSON.stringify({action:'getUserByToken', token})});
     const data = await res.json();
     if(data.ok && data.datos){
