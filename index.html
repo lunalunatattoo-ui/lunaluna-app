@@ -850,7 +850,7 @@ document.getElementById('login-btn').addEventListener('click', async()=>{
   document.getElementById('login-btn').disabled=true;
   document.getElementById('login-btn').textContent='Verificando...';
   try{
-    const PROXY = 'https://corsproxy.io/?';
+    const PROXY = 'https://api.allorigins.win/raw?url=';
     const res = await fetch(PROXY + encodeURIComponent(SCRIPT_URL), {method:'POST', body:JSON.stringify({action:'getUserByToken', token})});
     const data = await res.json();
     if(data.ok && data.datos){
@@ -874,7 +874,7 @@ document.getElementById('login-token').addEventListener('keypress', e=>{
   if(e.key==='Enter') document.getElementById('login-btn').click();
 });
 async function api(action, data={}){
-  const PROXY = 'https://corsproxy.io/?';
+  const PROXY = 'https://api.allorigins.win/raw?url=';
   const res = await fetch(PROXY + encodeURIComponent(SCRIPT_URL), {
     method:'POST',
     body: JSON.stringify({action, token:TOKEN, ...data})
@@ -895,7 +895,7 @@ function arrancarApp(){
 async function init(){
   if(TOKEN){
     try{
-      const PROXY = 'https://corsproxy.io/?';
+      const PROXY = 'https://api.allorigins.win/raw?url=';
       const res = await fetch(PROXY + encodeURIComponent(SCRIPT_URL), {method:'POST', body:JSON.stringify({action:'getUserByToken', token})});
       const data = await res.json();
       if(data.ok && data.datos){
